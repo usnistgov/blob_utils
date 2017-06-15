@@ -9,7 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name="blob_utils",
-    version="1.0.0-alpha1",
+    version="1.0.0-alpha2",
     description=("BLOB Utils package",),
     author="no_author",
     author_email="contact@example.com",
