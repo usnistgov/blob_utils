@@ -9,7 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name="blob_utils",
-    version="1.0.0-beta1",
+    version="1.0.0-beta2",
     description=("BLOB Utils package",),
     author="NIST IT Lab",
     author_email="itl_inquiries@nist.gov",
