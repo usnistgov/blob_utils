@@ -22,7 +22,7 @@ chdir(normpath(join(abspath(__file__), pardir)))
 
 setup(
     name="blob_utils",
-    version="1.0.0-beta2",
+    version="1.0.0-beta3",
     description="File management utils for the curator core project",
     long_description=long_desc,
     author="NIST IT Lab",
