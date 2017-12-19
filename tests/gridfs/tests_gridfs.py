@@ -4,16 +4,17 @@ from unittest import TestCase
 from os.path import join, dirname, abspath
 from blob_utils.blob_host_factory import BLOBHostFactory
 from blob_utils.commons.exceptions import BLOBError
+from tests.test_settings import MONGODB_URI
 
 RESOURCES_PATH = join(dirname(abspath(__file__)), 'data')
-# FIXME: find mock that supports gridfs
-MONGO_URI = 'mongodb://user:password@host/database'
 
 
 class TestGridFSHost(TestCase):
+    blob_host = None
+
     @classmethod
     def setUpClass(cls):
-        blob_host_factory = BLOBHostFactory('GridFS', MONGO_URI)
+        blob_host_factory = BLOBHostFactory('GridFS', MONGODB_URI)
         cls.blob_host = blob_host_factory.create_blob_host()
 
         if len(list(cls.blob_host.fs.find())) != 0:
