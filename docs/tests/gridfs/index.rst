@@ -1,7 +1,7 @@
-tests
-=====
+tests.gridfs
+============
 
-.. automodule:: tests
+.. automodule:: tests.gridfs
     :members:
     :undoc-members:
     :show-inheritance:
@@ -9,4 +9,5 @@ tests
 .. toctree::
     :maxdepth: 2
 
-    gridfs/index
+    tests_gridfs
+
