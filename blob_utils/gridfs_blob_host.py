@@ -75,7 +75,7 @@ class GridFSBLOBHost(BLOBHost):
             if metadata is None:
                 metadata = dict()
             blob_id = self.fs.put(blob, filename=filename, metadata=metadata)
-        except Exception, e:
+        except Exception as e:
             raise BLOBError("An error occurred while saving the file.")
         return blob_id
 
