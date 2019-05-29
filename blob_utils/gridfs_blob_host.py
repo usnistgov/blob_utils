@@ -1,9 +1,12 @@
 """GridFS Blob Host
 """
 
-from pymongo import MongoClient
+from builtins import str
+
 import gridfs
 from bson.objectid import ObjectId
+from pymongo import MongoClient
+
 from blob_utils.blob_host import BLOBHost
 from blob_utils.commons.exceptions import BLOBError
 
