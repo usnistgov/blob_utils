@@ -1,6 +1,5 @@
 """Tests for GridFS Host
 """
-from builtins import str
 from os.path import join, dirname, abspath
 from unittest import TestCase
 

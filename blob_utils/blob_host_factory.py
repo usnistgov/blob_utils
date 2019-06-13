@@ -1,7 +1,5 @@
 """Blob host factory
 """
-from builtins import object
-from builtins import str
 
 from blob_utils.commons.exceptions import BLOBError
 from blob_utils.dspace_blob_host import DSpaceBLOBHost

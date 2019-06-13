@@ -1,7 +1,6 @@
 """GridFS Blob Host
 """
 
-from builtins import str
 
 import gridfs
 from bson.objectid import ObjectId

@@ -1,12 +1,9 @@
 """Blob Host class
 """
 from abc import ABCMeta, abstractmethod
-from builtins import object
-
-from future.utils import with_metaclass
 
 
-class BLOBHost(with_metaclass(ABCMeta, object)):
+class BLOBHost(object, metaclass=ABCMeta):
     def __init__(self, blob_host_uri, blob_host_user=None, blob_host_password=None):
         """Initializes blob host
 
