@@ -9,4 +9,5 @@ tests
 .. toctree::
     :maxdepth: 2
 
-    gridfs/index
+    test_settings
+    gridfs_blob_host/index

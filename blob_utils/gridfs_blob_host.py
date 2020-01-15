@@ -1,7 +1,5 @@
-"""GridFS Blob Host
+""" GridFS Blob Host
 """
-
-
 import gridfs
 from bson.objectid import ObjectId
 from pymongo import MongoClient
@@ -33,8 +31,8 @@ class GridFSBLOBHost(BLOBHost):
             self.database = self.client[database_name]
             # connect to gridfs
             self.fs = gridfs.GridFS(self.database)
-        except:
-            raise BLOBError("Unable to create the connection to the GridFS collection.")
+        except Exception as e:
+            raise BLOBError("Unable to create the connection to the GridFS collection: %s" % str(e))
 
     def get(self, handle):
         """Returns a blob
