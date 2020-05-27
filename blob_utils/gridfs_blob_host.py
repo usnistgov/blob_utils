@@ -21,18 +21,21 @@ class GridFSBLOBHost(BLOBHost):
 
         try:
             # connect to mongo instance
-            self.client = MongoClient(self.blob_host_uri,
-                                      serverSelectionTimeoutMS=CONNECTION_TIMEOUT)
+            self.client = MongoClient(
+                self.blob_host_uri, serverSelectionTimeoutMS=CONNECTION_TIMEOUT
+            )
             # check connection
             self.client.server_info()
             # get database name from uri
-            database_name = blob_host_uri.split('/')[-1]
+            database_name = blob_host_uri.split("/")[-1]
             # connect to database
             self.database = self.client[database_name]
             # connect to gridfs
             self.fs = gridfs.GridFS(self.database)
         except Exception as e:
-            raise BLOBError("Unable to create the connection to the GridFS collection: %s" % str(e))
+            raise BLOBError(
+                "Unable to create the connection to the GridFS collection: %s" % str(e)
+            )
 
     def get(self, handle):
         """Returns a blob
@@ -48,9 +51,9 @@ class GridFSBLOBHost(BLOBHost):
                 with self.fs.get(ObjectId(handle)) as blob:
                     return blob.read()
             else:
-                raise BLOBError('No file found for the given id.')
+                raise BLOBError("No file found for the given id.")
         except:
-            raise BLOBError('An unexpected error occurred while retrieving the file.')
+            raise BLOBError("An unexpected error occurred while retrieving the file.")
 
     def list(self):
         """Returns list of blob ids
