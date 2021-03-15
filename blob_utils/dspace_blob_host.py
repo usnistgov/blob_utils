@@ -4,8 +4,7 @@ from blob_utils.blob_host import BLOBHost
 
 
 class DSpaceBLOBHost(BLOBHost):
-    """
-    """
+    """"""
 
     def __init__(self, blob_host_uri, blob_host_user, blob_host_password):
         """Initializes DSpace blob host
