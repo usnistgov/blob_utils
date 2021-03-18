@@ -12,7 +12,7 @@ CONNECTION_TIMEOUT = 100
 
 class GridFSBLOBHost(BLOBHost):
     def __init__(self, blob_host_uri):
-        """Initializes GridFS blob host
+        """Initialize GridFS blob host.
 
         Args:
             blob_host_uri: MongoDB uri (mongodb://username:password@host:port/database)
@@ -38,33 +38,37 @@ class GridFSBLOBHost(BLOBHost):
             )
 
     def get(self, handle):
-        """Returns a blob
+        """Return a blob with the given handle.
 
         Args:
-            handle: blob id
+            handle(str): ObjectId of the Blob object to retrieve.
 
         Returns:
+            bytes: the content of the file stored with the given Blob id.
 
+        Raises:
+            BlobError: if the object does not exists or an unexpected error occurs.
         """
         try:
-            if self.fs.exists(ObjectId(handle)):
-                with self.fs.get(ObjectId(handle)) as blob:
-                    return blob.read()
-            else:
-                raise BLOBError("No file found for the given id.")
-        except:
-            raise BLOBError("An unexpected error occurred while retrieving the file.")
+            if not self.fs.exists(ObjectId(handle)):
+                raise BLOBError("No file found with the given ID.")
+
+            with self.fs.get(ObjectId(handle)) as blob:
+                return blob.read()
+        except Exception as exc:
+            raise BLOBError(
+                f"An unexpected error occurred while retrieving the file: {str(exc)}"
+            )
 
     def list(self):
-        """Returns list of blob ids
+        """Return list of blob ids.
 
         Returns:
-
         """
         return [str(blob._id) for blob in self.fs.find()]
 
     def save(self, blob, filename=None, metadata=None):
-        """Saves a blob
+        """Save a blob.
 
         Args:
             blob:
@@ -77,13 +81,14 @@ class GridFSBLOBHost(BLOBHost):
         try:
             if metadata is None:
                 metadata = dict()
+
             blob_id = self.fs.put(blob, filename=filename, metadata=metadata)
-        except Exception as e:
-            raise BLOBError("An error occurred while saving the file.")
+        except Exception as exc:
+            raise BLOBError(f"An error occurred while saving the file: {str(exc)}")
         return blob_id
 
     def delete(self, handle):
-        """Deletes a blob
+        """Delete a blob
 
         Args:
             handle: blob id
@@ -94,11 +99,11 @@ class GridFSBLOBHost(BLOBHost):
         try:
             if self.fs.exists(ObjectId(handle)):
                 self.fs.delete(ObjectId(handle))
-        except:
-            raise BLOBError("An error occurred while deleting the file.")
+        except Exception as exc:
+            raise BLOBError(f"An error occurred while deleting the file: {str(exc)}")
 
     def query(self, query):
-        """Query the blob collection - not implemented
+        """Query the blob collection. Not yet implemented.
 
         Args:
             query:
@@ -106,4 +111,4 @@ class GridFSBLOBHost(BLOBHost):
         Returns:
 
         """
-        BLOBHost.query(self)
+        BLOBHost.query(self, query)

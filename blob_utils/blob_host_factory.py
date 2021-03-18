@@ -16,7 +16,7 @@ class BLOBHostFactory(object):
         blob_host_user=None,
         blob_host_password=None,
     ):
-        """
+        """Initialize Blob host factory.
 
         Args:
             blob_host:
